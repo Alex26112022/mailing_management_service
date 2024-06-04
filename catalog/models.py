@@ -54,9 +54,9 @@ class Contacts(models.Model):
                              help_text='Введите название филиала')
     address = models.CharField(max_length=100, verbose_name='Адрес филиала',
                                help_text='Введите адрес филиала')
-    phone = models.IntegerField(verbose_name='Телефон',
-                                help_text='Введите телефон', blank=True,
-                                null=True)
+    phone = models.CharField(max_length=100, verbose_name='Телефон',
+                             help_text='Введите телефон', blank=True,
+                             null=True)
 
     def __str__(self):
         return self.title
