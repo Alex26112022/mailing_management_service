@@ -6,6 +6,7 @@ from catalog.write_csv import write_csv
 
 def index(request):
     data_products = Product.objects.all()
+    print(data_products[:5])
     return render(request, 'catalog/index.html',
                   {'data_products': data_products[:5]})
 
