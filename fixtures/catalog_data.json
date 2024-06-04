@@ -139,5 +139,23 @@
       "title": "Книги",
       "description": "Печатная продукция"
     }
+  },
+  {
+    "model": "catalog.contacts",
+    "pk": 1,
+    "fields": {
+      "title": "Филиал № 1",
+      "address": "Москва",
+      "phone": "89876543210"
+    }
+  },
+  {
+    "model": "catalog.contacts",
+    "pk": 2,
+    "fields": {
+      "title": "Филиал № 2",
+      "address": "Санкт-Петербург",
+      "phone": "89998887766"
+    }
   }
 ]
