@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Category, Product
+from .models import Category, Product, Contacts
 
 from catalog.write_csv import write_csv
 
@@ -22,4 +22,8 @@ def contacts(request):
         print(f'Имя пользователя: {name}\n'
               f'Телефон: {phone}\n'
               f'Сообщение: {message}\n')
-    return render(request, 'catalog/contacts.html')
+
+    data_contacts = Contacts.objects.all()
+
+    return render(request, 'catalog/contacts.html',
+                  {'data_contacts': data_contacts})
