@@ -6,7 +6,7 @@ from catalog.models import Product, Category
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'image', 'category', 'price',
-                    'created_at', 'updated_at')
+                    'created_at', 'updated_at', 'manufactured_at')
 
 
 @admin.register(Category)

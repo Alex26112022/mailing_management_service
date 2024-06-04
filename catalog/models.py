@@ -22,6 +22,9 @@ class Product(models.Model):
                                                                       'создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата '
                                                                   'последнего изменения')
+    manufactured_at = models.DateField(verbose_name='Дата производства '
+                                                    'продукта', blank=True,
+                                       null=True)
 
     def __str__(self):
         return self.title
