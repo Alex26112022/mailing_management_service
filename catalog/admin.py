@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from catalog.models import Product, Category
 
@@ -9,6 +10,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     search_fields = ('title', 'description')
     list_display_links = ('pk', 'title', 'price', 'category')
+    fields = ['title', 'description', 'image', 'preview', 'price', 'category']
+    readonly_fields = ['preview']
+
+    def preview(self, obj):
+        return mark_safe(f'<img src="{obj.image.url}" style="max-height: 200px;">')
 
 
 @admin.register(Category)
