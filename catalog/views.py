@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Category, Product, Contacts
 
 from catalog.write_csv import write_csv
 
 
 def index(request):
-    return render(request, 'catalog/index.html')
+    data_products = Product.objects.all()
+    print(data_products[:5])
+    return render(request, 'catalog/index.html',
+                  {'data_products': data_products[:5]})
 
 
 def contacts(request):
@@ -19,4 +22,8 @@ def contacts(request):
         print(f'Имя пользователя: {name}\n'
               f'Телефон: {phone}\n'
               f'Сообщение: {message}\n')
-    return render(request, 'catalog/contacts.html')
+
+    data_contacts = Contacts.objects.all()
+
+    return render(request, 'catalog/contacts.html',
+                  {'data_contacts': data_contacts})
