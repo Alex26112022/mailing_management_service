@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('catalog', '0001_initial'),
     ]
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='manufactured_at',
-            field=models.DateField(blank=True, null=True, verbose_name='Дата производства продукта'),
+            field=models.DateField(blank=True, null=True,
+                                   verbose_name='Дата производства продукта'),
         ),
     ]
