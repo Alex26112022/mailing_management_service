@@ -5,10 +5,13 @@ from catalog.models import Product, Category
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'image', 'category', 'price',
-                    'created_at', 'updated_at')
+    list_display = ('pk', 'title', 'price', 'category')
+    list_filter = ('category',)
+    search_fields = ('title', 'description')
+    list_display_links = ('pk', 'title', 'price', 'category')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description')
+    list_display = ('pk', 'title')
+    list_display_links = ('pk', 'title')
