@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+{% load my_tags %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="card mb-4 box-shadow" style="min-height: 420px;">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        {{ product.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title pricing-card-title">
+                        {{ product.price }}</h2>
+                    <p>{{ product.description }}</p>
+                    <img src="{{ product.image | photo_path }}"
+                         style="max-height: 150px;">
+                    <br><br>
+                    <button type="button"
+                            class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
