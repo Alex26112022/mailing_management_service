@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.edit import CreateView
 from .models import Category, Product, Contacts
+from .forms import ProductForm
 
 from catalog.write_csv import write_csv
 
@@ -33,3 +35,14 @@ def get_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     context = {'product': product}
     return render(request, 'catalog/product.html', context)
+
+
+class ProductCreateView(CreateView):
+    template_name = 'catalog/add_product.html'
+    form_class = ProductForm
+    success_url = '/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all()
+        return context

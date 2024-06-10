@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="col-mg-6 col-md-4 col-sm-12 m-3">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Новый товар</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {% for f in form %}
+                    <p>
+                        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        {{ f }}
+                    </p>
+                    {% endfor %}
+                <button type="submit"
+                        class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
