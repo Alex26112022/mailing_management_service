@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Category, Product, Contacts
 
 from catalog.write_csv import write_csv
@@ -27,3 +27,9 @@ def contacts(request):
 
     return render(request, 'catalog/contacts.html',
                   {'data_contacts': data_contacts})
+
+
+def get_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    context = {'product': product}
+    return render(request, 'catalog/product.html', context)
