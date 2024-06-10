@@ -1,11 +1,13 @@
 {% extends 'catalog/base.html' %}
+{% block title %}Главная страница{% endblock %}
 {% block content %}
 {% load my_tags %}
 <div class="container">
     <div class="row text-center">
-        {% for product in data_products %}
+        {% include 'catalog/includes/inc_paginator.html' %}
+        {% for product in page_obj %}
         <div class="col-3">
-            <div class="card mb-4 box-shadow"
+            <div class="card mb-3 box-shadow"
                  style="min-height: 450px; max-height: 450px;">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">{{ product.title }}</h4>
@@ -20,7 +22,8 @@
                     <button type="button"
                             class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                     <a href="{% url 'catalog:get_product' product.pk %}"
-                       class="btn btn-lg btn-block btn-outline-warning" role="button">
+                       class="btn btn-lg btn-block btn-outline-warning"
+                       role="button">
                       Подробнее
                     </a>
 
@@ -29,5 +32,6 @@
         </div>
         {% endfor %}
     </div>
+    {% include 'catalog/includes/inc_paginator.html' %}
 </div>
 {% endblock %}
