@@ -1,5 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
+{% load my_tags %}
 <div class="container">
     <div class="row text-center">
         {% for product in data_products %}
@@ -13,7 +14,7 @@
                     <h2 class="card-title pricing-card-title">
                         {{product.price }} руб.</h2>
                     <p>{{ product.description | truncatechars:100}}</p>
-                    <img src="{{ product.image.url }}"
+                    <img src="{{ product.image | photo_path }}"
                          style="max-height: 150px;">
                     <br><br>
                     <button type="button"
