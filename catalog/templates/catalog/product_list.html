@@ -2,10 +2,11 @@
 {% block title %}Главная страница{% endblock %}
 {% block content %}
 {% load my_tags %}
+
 <div class="container">
     <div class="row text-center">
         {% include 'catalog/includes/inc_paginator.html' %}
-        {% for product in page_obj %}
+        {% for product in object_list %}
         <div class="col-3">
             <div class="card mb-3 box-shadow"
                  style="min-height: 450px; max-height: 450px;">
