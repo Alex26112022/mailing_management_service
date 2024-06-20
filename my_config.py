@@ -6,6 +6,9 @@ path_fixture_json = os.path.join(ROOT_DIR, 'fixtures', 'catalog_data.json')
 
 load_dotenv()
 
+yandex_user = os.getenv('YANDEX_USER')
+yandex_password = os.getenv('YANDEX_PASSWORD')
+
 
 def settings_bd():
     return os.getenv('PASSWORD')

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (ListView, DetailView, CreateView,
-                                  UpdateView, DeleteView, \
-                                  )
+                                  UpdateView, DeleteView)
 from pytils.translit import slugify
 
 from blog.models import Blog
+from blog.send_yandex_mail import send_yandex_mail
 
 
 class BlogListView(ListView):
@@ -27,6 +27,9 @@ class BlogDetailView(DetailView):
         obj = super().get_object(queryset)
         obj.count += 1
         obj.save()
+        if obj.count >= 100:
+            send_yandex_mail(obj.title)
+            print('Проверьте почту!!!')
         return obj
 
 
