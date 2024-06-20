@@ -1,1 +1,55 @@
 {% extends 'catalog/base.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+{% load my_tags %}
+
+<div class="container">
+    <div class="row text-center">
+        {% include 'catalog/includes/inc_paginator.html' %}
+        {% for blog in object_list %}
+        <div class="col-3">
+            <div class="card mb-3 box-shadow"
+                 style="min-height: 450px; max-height: 450px;">
+                <div class="card-header">
+                    <h5 class="my-0 font-weight-normal">{{ blog.title }}
+                    {{ blog.slug }}</h5>
+                </div>
+                <div class="card-body">
+                    <p>{{ blog.content | truncatechars:100}}</p>
+                    {% if blog.photo %}
+                        <img src="{{ blog.photo | photo_path }}"
+                             style="max-height: 100px;">
+                    {% else %}
+                        <img src="/media/ava.jpg"
+                             style="max-height: 100px;">
+                    {% endif %}
+                    <div class="card-footer">
+                        <h6 class="my-0 font-weight-normal">
+                            Опубликовано: <br>{{ blog.created_at }} </h6>
+                    </div>
+                    <p>Просмотров: {{ blog.count }}</p>
+                    <br>
+                    <a href="{% url 'blog:detail' blog.pk %}"
+                       class="btn btn-lg btn-block btn-outline-warning"
+                       role="button">
+                      Подробнее
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'catalog/includes/inc_paginator.html' %}
+</div>
+
+<div class="col-12 h-100 mb-4
+   d-flex align-items-center justify-content-center">
+  <a href="{% url 'blog:add_blog' %}"
+   class="btn btn-block btn-outline-success"
+   role="button">Добавить
+    блог
+  </a>
+</div>
+
+{% endblock %}

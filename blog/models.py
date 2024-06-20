@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=100, verbose_name='Заголовок')
+    title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.CharField(max_length=100, null=True, blank=True,
                             verbose_name='Слаг')
     content = models.TextField(verbose_name='Содержание', blank=True,
