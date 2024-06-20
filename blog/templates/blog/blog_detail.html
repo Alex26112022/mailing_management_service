@@ -1,0 +1,43 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+{% load my_tags %}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="card mb-4 box-shadow" style="min-height: 420px;">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        {{ blog.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <p>{{ blog.content }}</p>
+                    {% if blog.photo %}
+                        <img src="{{ blog.photo | photo_path }}"
+                             style="max-height: 150px;">
+                    {% else %}
+                        <img src="/media/ava.jpg"
+                             style="max-height: 150px;">
+                    {% endif %}
+                    <div class="card-footer">
+                        <h6 class="my-0 font-weight-normal">
+                            Опубликовано: <br>{{ blog.created_at }} </h6>
+                    </div>
+                    <p>Просмотров: {{ blog.count }}</p>
+                    <br>
+                    <a href="{% url 'blog:edit_blog' blog.pk %}"
+                       class="btn btn-lg btn-block btn-outline-success"
+                       role="button">
+                      Редактировать
+                    </a>
+                    <a href="{% url 'blog:delete_blog' blog.pk %}"
+                       class="btn btn-lg btn-block btn-outline-danger"
+                       role="button">
+                      Удалить
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
