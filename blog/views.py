@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (ListView, DetailView, CreateView,
                                   UpdateView, DeleteView, \
                                   )
@@ -23,6 +23,12 @@ class BlogDetailView(DetailView):
     """ Выводит один пост блога. """
     model = Blog
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.count += 1
+        obj.save()
+        return obj
+
 
 class BlogCreateView(CreateView):
     """ Создает новый пост блога. """
@@ -42,7 +48,6 @@ class BlogUpdateView(UpdateView):
     """ Редактирует пост блога. """
     model = Blog
     fields = ('title', 'content', 'photo')
-    success_url = reverse_lazy('blog:index')
 
     def form_valid(self, form):
         if form.is_valid():
@@ -50,6 +55,9 @@ class BlogUpdateView(UpdateView):
             new_blog.slug = slugify(new_blog.title)
             new_blog.save()
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('blog:detail', args=[self.kwargs.get('pk')])
 
 
 class BlogDeleteView(DeleteView):
