@@ -28,7 +28,8 @@ class BlogDetailView(DetailView):
         obj.count += 1
         obj.save()
         if obj.count >= 100:
-            send_yandex_mail(obj.title)
+            yandex_message = f'<a href="http://127.0.0.1:8000/blog/{obj.pk}/">{obj.title}</a>'
+            send_yandex_mail(yandex_message)
             print('Проверьте почту!!!')
         return obj
 
