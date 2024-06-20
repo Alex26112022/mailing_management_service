@@ -117,11 +117,6 @@ class Command(BaseCommand):
                                             'fields').get('content'),
                                         photo=blog.get(
                                             'fields').get('photo'),
-                                        created_at=blog.get(
-                                            'fields').get('created_at'),
-                                        is_published=blog.get('fields').get(
-                                            'is_published'),
-                                        count=blog.get('fields').get(
-                                            'count'), ))
+                                        ))
 
         Blog.objects.bulk_create(blog_for_create)
