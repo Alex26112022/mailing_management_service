@@ -2,8 +2,9 @@ import json
 
 from django.core.management import BaseCommand
 
+from blog.models import Blog
 from catalog.models import Product, Category, Contacts
-from my_config import path_fixture_json
+from my_config import path_fixture_json, path_blog_fixture_json
 
 
 class Command(BaseCommand):
@@ -23,10 +24,10 @@ class Command(BaseCommand):
     @staticmethod
     def json_read_products():
         """ Получает данные из фикстур с продуктами. """
-        with open(path_fixture_json, encoding='utf-8') as f_cat:
-            data_cat = json.load(f_cat)
+        with open(path_fixture_json, encoding='utf-8') as f_prod:
+            data_prod = json.load(f_prod)
         list_products = []
-        for el in data_cat:
+        for el in data_prod:
             if el['model'] == "catalog.product":
                 list_products.append(el)
         return list_products
@@ -34,22 +35,34 @@ class Command(BaseCommand):
     @staticmethod
     def json_read_contacts():
         """ Получает данные из фикстур с контактами. """
-        with open(path_fixture_json, encoding='utf-8') as f_cat:
-            data_cat = json.load(f_cat)
+        with open(path_fixture_json, encoding='utf-8') as f_con:
+            data_prod = json.load(f_con)
         list_contacts = []
-        for el in data_cat:
+        for el in data_prod:
             if el['model'] == "catalog.contacts":
                 list_contacts.append(el)
         return list_contacts
+
+    @staticmethod
+    def json_read_blog():
+        """ Получает данные из фикстур с блогами. """
+        with open(path_blog_fixture_json, encoding='utf-8') as f_blog:
+            data_blog = json.load(f_blog)
+        list_blog = []
+        for el in data_blog:
+            list_blog.append(el)
+        return list_blog
 
     def handle(self, *args, **options):
         Product.objects.all().delete()
         Category.objects.all().delete()
         Contacts.objects.all().delete()
+        Blog.objects.all().delete()
 
         product_for_create = []
         category_for_create = []
         contact_for_create = []
+        blog_for_create = []
 
         for category in self.json_read_categories():
             category_for_create.append(Category(pk=category.get('pk'),
@@ -94,3 +107,16 @@ class Command(BaseCommand):
                                                    'fields').get('phone')))
 
         Contacts.objects.bulk_create(contact_for_create)
+
+        for blog in self.json_read_blog():
+            blog_for_create.append(Blog(pk=blog.get('pk'),
+                                        title=blog.get(
+                                            'fields').get('title'),
+                                        slug=blog.get('fields').get('slug'),
+                                        content=blog.get(
+                                            'fields').get('content'),
+                                        photo=blog.get(
+                                            'fields').get('photo'),
+                                        ))
+
+        Blog.objects.bulk_create(blog_for_create)

@@ -2,10 +2,11 @@
 {% block title %}Главная страница{% endblock %}
 {% block content %}
 {% load my_tags %}
+
 <div class="container">
     <div class="row text-center">
         {% include 'catalog/includes/inc_paginator.html' %}
-        {% for product in page_obj %}
+        {% for product in object_list %}
         <div class="col-3">
             <div class="card mb-3 box-shadow"
                  style="min-height: 450px; max-height: 450px;">
@@ -16,8 +17,13 @@
                     <h2 class="card-title pricing-card-title">
                         {{product.price }} руб.</h2>
                     <p>{{ product.description | truncatechars:100}}</p>
-                    <img src="{{ product.image | photo_path }}"
-                         style="max-height: 150px;">
+                    {% if product.image %}
+                        <img src="{{ product.image | photo_path }}"
+                             style="max-height: 150px;">
+                    {% else %}
+                        <img src="/media/ava.jpg"
+                             style="max-height: 150px;">
+                    {% endif %}
                     <br><br>
                     <button type="button"
                             class="btn btn-lg btn-block btn-outline-primary">Купить</button>
