@@ -11,11 +11,11 @@
             <div class="card mb-3 box-shadow"
                  style="min-height: 450px; max-height: 450px;">
                 <div class="card-header">
-                    <h5 class="my-0 font-weight-normal">{{ blog.title }}
-                    {{ blog.slug }}</h5>
+                    <h5 class="my-0 font-weight-normal">
+                        {{ blog.title | truncatechars:20 }}</h5>
                 </div>
                 <div class="card-body">
-                    <p>{{ blog.content | truncatechars:100}}</p>
+                    <p>{{ blog.content | truncatechars:80}}</p>
                     {% if blog.photo %}
                         <img src="{{ blog.photo | photo_path }}"
                              style="max-height: 100px;">
