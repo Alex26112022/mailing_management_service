@@ -42,18 +42,21 @@ class Migration(migrations.Migration):
                  models.TextField(blank=True, help_text='Введите описание',
                                   null=True, verbose_name='Описание')),
                 ('image', models.ImageField(blank=True, null=True,
-                                            upload_to='products/photo/%Y/%m/%d/',
+                                            upload_to='products/photo/%Y/%m/%d/',  # noqa
                                             verbose_name='Изображение')),
                 ('price', models.FloatField(blank=True,
-                                            help_text='Введите цену за покупку',
+                                            help_text='Введите цену за '
+                                                      'покупку',
                                             null=True,
                                             verbose_name='Цена за покупку')),
                 ('created_at', models.DateTimeField(auto_now_add=True,
-                                                    verbose_name='Дата создания')),
+                                                    verbose_name='Дата '
+                                                                 'создания')),
                 ('updated_at', models.DateTimeField(auto_now=True,
-                                                    verbose_name='Дата последнего изменения')),
+                                                    verbose_name='Дата '
+                                                                 'последнего изменения')),  # noqa
                 ('category', models.ForeignKey(blank=True, null=True,
-                                               on_delete=django.db.models.deletion.SET_NULL,
+                                               on_delete=django.db.models.deletion.SET_NULL,  # noqa
                                                related_name='product',
                                                to='catalog.category',
                                                verbose_name='Категория')),

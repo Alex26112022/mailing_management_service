@@ -6,10 +6,11 @@ from blog.models import Blog
 
 @admin.register(Blog)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'created_at', 'is_published', 'count')
+    list_display = ('pk', 'title', 'created_at', 'is_published', 'views_count')
     list_filter = ('is_published',)
     search_fields = ('title',)
-    list_display_links = ('pk', 'title', 'created_at', 'is_published', 'count')
+    list_display_links = (
+        'pk', 'title', 'created_at', 'is_published', 'views_count')
     fields = ['title', 'content', 'photo', 'preview', 'is_published']
     readonly_fields = ['preview']
 
