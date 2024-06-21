@@ -9,7 +9,7 @@
       "photo": "",
       "created_at": "2024-06-20T17:35:02.230Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -22,7 +22,7 @@
       "photo": "blog/photo/2024/06/20/anthropic.png",
       "created_at": "2024-06-20T17:38:39.238Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -35,7 +35,7 @@
       "photo": "blog/photo/2024/06/20/selectel.png",
       "created_at": "2024-06-20T17:42:22.618Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -48,7 +48,7 @@
       "photo": "blog/photo/2024/06/20/debian.jpeg",
       "created_at": "2024-06-20T17:44:09.496Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -61,7 +61,7 @@
       "photo": "blog/photo/2024/06/20/kasper.jpeg",
       "created_at": "2024-06-20T17:45:42.344Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -74,7 +74,7 @@
       "photo": "",
       "created_at": "2024-06-20T17:47:23.368Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   },
   {
@@ -87,7 +87,7 @@
       "photo": "",
       "created_at": "2024-06-20T17:48:34.654Z",
       "is_published": true,
-      "count": 0
+      "views_count": 0
     }
   }
 ]

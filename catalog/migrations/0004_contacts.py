@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('catalog', '0003_remove_product_manufactured_at'),
     ]
@@ -13,10 +12,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Contacts',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Введите название филиала', max_length=100, verbose_name='Название филиала')),
-                ('address', models.CharField(help_text='Введите адрес филиала', max_length=100, verbose_name='Адрес филиала')),
-                ('phone', models.IntegerField(blank=True, help_text='Введите телефон', null=True, verbose_name='Телефон')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
+                ('title',
+                 models.CharField(help_text='Введите название филиала',
+                                  max_length=100,
+                                  verbose_name='Название филиала')),
+                ('address', models.CharField(help_text='Введите адрес филиала',
+                                             max_length=100,
+                                             verbose_name='Адрес филиала')),
+                ('phone',
+                 models.IntegerField(blank=True, help_text='Введите телефон',
+                                     null=True, verbose_name='Телефон')),
             ],
             options={
                 'verbose_name': 'Контакт',
