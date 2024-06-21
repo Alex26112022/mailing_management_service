@@ -14,8 +14,9 @@ class Blog(models.Model):
                                       verbose_name='Дата создания')
     is_published = models.BooleanField(default=True,
                                        verbose_name='Опубликовано')
-    count = models.PositiveIntegerField(default=0, verbose_name='Количество '
-                                                                'просмотров')
+    views_count = models.PositiveIntegerField(default=0,
+                                              verbose_name='Количество '
+                                                           'просмотров')
 
     def __str__(self):
         return self.title

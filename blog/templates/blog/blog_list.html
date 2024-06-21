@@ -27,7 +27,7 @@
                         <h6 class="my-0 font-weight-normal">
                             Опубликовано: <br>{{ blog.created_at }} </h6>
                     </div>
-                    <p>Просмотров: {{ blog.count }}</p>
+                    <p>Просмотров: {{ blog.views_count }}</p>
                     <br>
                     <a href="{% url 'blog:detail' blog.pk %}"
                        class="btn btn-lg btn-block btn-outline-warning"

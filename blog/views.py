@@ -25,9 +25,9 @@ class BlogDetailView(DetailView):
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
-        obj.count += 1
+        obj.views_count += 1
         obj.save()
-        if obj.count >= 100:
+        if obj.views_count >= 100:
             yandex_message = f'<a href="http://127.0.0.1:8000/blog/{obj.pk}/">{obj.title}</a>'
             send_yandex_mail(yandex_message)
             print('Проверьте почту!!!')
