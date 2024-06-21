@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render  # noqa
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (ListView, DetailView, CreateView,
                                   UpdateView, DeleteView)
@@ -27,9 +27,11 @@ class BlogDetailView(DetailView):
         obj = super().get_object(queryset)
         obj.views_count += 1
         obj.save()
-        if obj.views_count >= 100:
-            yandex_message = f'<a href="http://127.0.0.1:8000/blog/{obj.pk}/">{obj.title}</a>'
-            send_yandex_mail(yandex_message)
+        max_views_count = 100
+        if obj.views_count >= max_views_count:
+            yandex_message = (f'<a href="http://127.0.0.1:8000/blog/'
+                              f'{obj.pk}/">{obj.title}</a>')
+            send_yandex_mail(yandex_message, max_views_count)
             print('Проверьте почту!!!')
         return obj
 

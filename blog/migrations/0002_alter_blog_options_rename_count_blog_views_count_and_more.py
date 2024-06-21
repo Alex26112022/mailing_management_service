@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('blog', '0001_initial'),
     ]
@@ -12,7 +11,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='blog',
-            options={'ordering': ['-created_at'], 'verbose_name': 'Блог', 'verbose_name_plural': 'Блоги'},
+            options={'ordering': ['-created_at'], 'verbose_name': 'Блог',
+                     'verbose_name_plural': 'Блоги'},
         ),
         migrations.RenameField(
             model_name='blog',
