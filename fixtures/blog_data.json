@@ -1,7 +1,7 @@
 [
   {
     "model": "blog.blog",
-    "pk": 1,
+    "pk": 91,
     "fields": {
       "title": "Сбер планирует ввести оплату",
       "slug": "sber-planiruet-vvesti-oplatu",
@@ -14,7 +14,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 2,
+    "pk": 92,
     "fields": {
       "title": "Anthropic анонсировала новую модель",
       "slug": "anthropic-anonsirovala-novuyu-model",
@@ -27,7 +27,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 3,
+    "pk": 93,
     "fields": {
       "title": "Запуск альфа-тестирования ОС Selectel",
       "slug": "zapusk-alfa-testirovaniya-os-selectel",
@@ -40,7 +40,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 4,
+    "pk": 94,
     "fields": {
       "title": "Debian 10",
       "slug": "debian-10",
@@ -53,7 +53,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 5,
+    "pk": 95,
     "fields": {
       "title": "Касперский",
       "slug": "kasperskij",
@@ -66,7 +66,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 6,
+    "pk": 96,
     "fields": {
       "title": "Samsung показала список неподдерживаемых приложений",
       "slug": "samsung-pokazala-spisok-nepodderzhivaemyih-prilozhenij",
@@ -79,7 +79,7 @@
   },
   {
     "model": "blog.blog",
-    "pk": 7,
+    "pk": 97,
     "fields": {
       "title": "AMD подтвердила утечку данных",
       "slug": "amd-podtverdila-utechku-dannyih",
