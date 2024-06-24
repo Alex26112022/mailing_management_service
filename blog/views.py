@@ -30,7 +30,7 @@ class BlogDetailView(DetailView):
         max_views_count = 100
         if obj.views_count >= max_views_count:
             yandex_message = (f'<a href="http://127.0.0.1:8000/blog/'
-                              f'{obj.pk}/">{obj.title}</a>')
+                              f'{obj.slug}/">{obj.title}</a>')
             send_yandex_mail(yandex_message, max_views_count)
             print('Проверьте почту!!!')
         return obj
@@ -54,14 +54,8 @@ class BlogUpdateView(UpdateView):
     model = Blog
     fields = ('title', 'content', 'photo')
 
-    def form_valid(self, form):
-        new_blog = form.save(commit=False)
-        new_blog.slug = slugify(new_blog.title)
-        new_blog.save()
-        return super().form_valid(form)
-
     def get_success_url(self):
-        return reverse('blog:detail', args=[self.kwargs.get('pk')])
+        return reverse('blog:detail', args=[self.kwargs.get('slug')])
 
 
 class BlogDeleteView(DeleteView):

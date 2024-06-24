@@ -1,10 +1,12 @@
 from django.db import models
+from pytils.translit import slugify
 
 
 class Blog(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     slug = models.CharField(max_length=100, null=True, blank=True,
-                            verbose_name='Слаг')
+                            verbose_name='Слаг', auto_created=slugify(title),
+                            db_index=True)
     content = models.TextField(verbose_name='Содержание', blank=True,
                                null=True)
     photo = models.ImageField(upload_to='blog/photo/%Y/%m/%d/',
