@@ -13,6 +13,7 @@
                 <div class="card-header">
                     <h5 class="my-0 font-weight-normal">
                         {{ blog.title | truncatechars:20 }}</h5>
+                    {{ blog.slug }}
                 </div>
                 <div class="card-body">
                     <p>{{ blog.content | truncatechars:80}}</p>
@@ -29,7 +30,7 @@
                     </div>
                     <p>Просмотров: {{ blog.views_count }}</p>
                     <br>
-                    <a href="{% url 'blog:detail' blog.pk %}"
+                    <a href="{% url 'blog:detail' blog.slug %}"
                        class="btn btn-lg btn-block btn-outline-warning"
                        role="button">
                       Подробнее
@@ -46,8 +47,8 @@
 <div class="col-12 h-100 mb-4
    d-flex align-items-center justify-content-center">
   <a href="{% url 'blog:add_blog' %}"
-   class="btn btn-block btn-outline-success"
-   role="button">Добавить
+     class="btn btn-block btn-outline-success"
+     role="button">Добавить
     блог
   </a>
 </div>
