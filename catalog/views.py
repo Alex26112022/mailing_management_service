@@ -16,6 +16,31 @@ class ProductListView(ListView):
     paginate_by = 4
 
 
+class ProductDetailView(DetailView):
+    """ Выводит детальную страницу продукта. """
+    model = Product
+
+
+class ProductCreateView(CreateView):
+    """ Создает новый продукт. """
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:index')
+
+
+class ProductUpdateView(UpdateView):
+    """ Редактирует продукт. """
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:index')
+
+
+class ProductDeleteView(DeleteView):
+    """ Удаляет продукт. """
+    model = Product
+    success_url = reverse_lazy('catalog:index')
+
+
 class ContactlistView(ListView):
     """ Выводит список контактов. """
     model = Contacts
@@ -32,15 +57,3 @@ class ContactlistView(ListView):
               f'Сообщение: {message}\n')
 
         return HttpResponseRedirect(reverse('catalog:contacts'))
-
-
-class ProductDetailView(DetailView):
-    """ Выводит детальную страницу продукта. """
-    model = Product
-
-
-class ProductCreateView(CreateView):
-    """ Создает новый продукт. """
-    template_name = 'catalog/product_form.html'
-    form_class = ProductForm
-    success_url = reverse_lazy('catalog:index')

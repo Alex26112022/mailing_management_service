@@ -38,6 +38,13 @@
         </div>
         {% endfor %}
     </div>
+
+    <div class="d-flex align-items-center
+    justify-content-center">
+        <a class="col-6 p-2 btn btn-outline-primary "
+       href="{% url 'catalog:add_product' %}">Добавить продукт</a>
+    </div>
+
     {% include 'catalog/includes/inc_paginator.html' %}
 </div>
 {% endblock %}
