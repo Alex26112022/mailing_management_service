@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, \
     DeleteView, TemplateView
 from django.core.paginator import Paginator
-from .models import Category, Product, Contacts
+from .models import Category, Product, Contacts, Version
 from .forms import ProductForm
 
 from catalog.write_csv import write_csv
@@ -19,6 +19,19 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     """ Выводит детальную страницу продукта. """
     model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # versions = Version.objects.filter(current_version=True)
+        # context['version'] = versions.get(product=self.object)
+        # if versions.get(product=self.object).current_version:
+        #     context['version'] = versions.get(product=self.object)
+        try:
+            context['version'] = Version.objects.filter(current_version=True).get(
+                product=self.object)
+        except Version.DoesNotExist:
+            context['version'] = None
+        return context
 
 
 class ProductCreateView(CreateView):

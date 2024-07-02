@@ -10,6 +10,11 @@
                     <h4 class="my-0 font-weight-normal">
                         {{ product.title }}</h4>
                 </div>
+                {% if version %}
+                <p>
+                    {{ version }}
+                </p>
+                {% endif %}
                 <div class="card-body">
                     <h2 class="card-title pricing-card-title">
                         {{ product.price }}</h2>
