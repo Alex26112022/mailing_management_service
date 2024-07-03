@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from catalog.models import Product, Category, Contacts
+from catalog.models import Product, Category, Contacts, Version
 
 
 @admin.register(Product)
@@ -22,6 +22,15 @@ class ProductAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title')
     list_display_links = ('pk', 'title')
+
+
+@admin.register(Version)
+class VersionAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'product', 'version', 'title', 'current_version')
+    list_display_links = (
+        'pk', 'product', 'version', 'title', 'current_version')
+    ordering = ('product',)
+    list_filter = ('product',)
 
 
 @admin.register(Contacts)
