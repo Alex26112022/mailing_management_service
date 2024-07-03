@@ -34,3 +34,11 @@ class VersionForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
+
+    def clean_current_version(self):
+        current_version = self.cleaned_data.get('current_version')
+        if Version.objects.filter(current_version=True,
+                                  product=self.instance.product) and current_version:
+            raise forms.ValidationError(
+                'Только одна версия может быть активной!')
+        return current_version
