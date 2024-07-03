@@ -48,6 +48,26 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
 
+class Version(models.Model):
+    """ Класс-модель версий. """
+    product = models.ForeignKey('Product', on_delete=models.CASCADE,
+                                related_name='version', verbose_name='Продукт')
+    version = models.FloatField(verbose_name='Версия',
+                                help_text='Введите версию')
+    title = models.CharField(max_length=100, verbose_name='Название версии',
+                             help_text='Введите название версии')
+    current_version = models.BooleanField(verbose_name='Текущая версия',
+                                          help_text='Это текущая версия?',
+                                          default=False)
+
+    def __str__(self):
+        return f'{self.title} - {self.version}'
+
+    class Meta:
+        verbose_name = 'Версия'
+        verbose_name_plural = 'Версии'
+
+
 class Contacts(models.Model):
     """ Класс-модель контактов. """
     title = models.CharField(max_length=100, verbose_name='Название филиала',
