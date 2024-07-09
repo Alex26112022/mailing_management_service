@@ -10,10 +10,21 @@
        href="{% url 'catalog:contacts' %}">Контакты</a>
 
     <div class='d-flex justify-content-end'>
-      <a class="btn btn-warning"
-        href="{% url 'users:register' %}">Регистрация</a>
+      {% if user.is_authenticated %}
+      <p class="m-2 text-white">
+        {{ user.email }} |
+      </p>
+      <a class="btn btn-sm btn-danger m-2"
+        href="{% url 'users:logout' %}">Выйти</a>
+      {% else %}
+      <a class="btn btn-sm btn-info m-2"
+        href="{% url 'users:login' %}">Войти</a>
 
+      <a class="btn btn-sm btn-warning m-2"
+        href="{% url 'users:register' %}">Регистрация</a>
+      {% endif %}
     </div>
+
   </nav>
 </div>
 

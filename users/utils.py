@@ -9,4 +9,4 @@ def email_verification(request, token):
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
-    return redirect(reverse('catalog:index'))
+    return redirect(reverse('users:login'))

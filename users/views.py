@@ -10,11 +10,15 @@ from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm
 
 
+def notification(request):
+    return render(request, 'users/notification.html')
+
+
 class UserCreate(CreateView):
     """ Создает нового пользователя. """
     model = get_user_model()
     form_class = UserRegisterForm
-    success_url = reverse_lazy('catalog:index')
+    success_url = reverse_lazy('users:notification')
 
     def form_valid(self, form):
         user = form.save(commit=False)
