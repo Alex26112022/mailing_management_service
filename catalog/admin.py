@@ -6,11 +6,12 @@ from catalog.models import Product, Category, Contacts, Version
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'price', 'category')
-    list_filter = ('category',)
+    list_display = ('pk', 'title', 'price', 'category', 'owner')
+    list_filter = ('category', 'owner')
     search_fields = ('title', 'description')
-    list_display_links = ('pk', 'title', 'price', 'category')
-    fields = ['title', 'description', 'image', 'preview', 'price', 'category']
+    list_display_links = ('pk', 'title', 'price', 'category', 'owner')
+    fields = ['title', 'description', 'image', 'preview', 'price', 'category',
+              'owner']
     readonly_fields = ['preview']
 
     def preview(self, obj):

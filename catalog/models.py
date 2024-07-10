@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 class Product(models.Model):
     """ Класс-модель продуктов. """
@@ -22,6 +24,10 @@ class Product(models.Model):
                                                                       'создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата '
                                                                   'последнего изменения')
+    owner = models.ForeignKey(User, blank=True, null=True,
+                              verbose_name='Продавец',
+                              on_delete=models.SET_NULL,
+                              related_name='product')
 
     def __str__(self):
         return self.title
