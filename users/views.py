@@ -7,10 +7,10 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from config.settings import EMAIL_HOST_USER
-from users.forms import UserRegisterForm
+from users.forms import UserRegisterForm, UserProfileForm
 from users.utils import generate_password
 
 
@@ -59,3 +59,13 @@ class MyPasswordReset(PasswordResetView):
                                f'Ваш новый пароль: <h2><b>{new_password}</b></h2></h3>')
 
         return HttpResponseRedirect(reverse('users:password_reset_done'))
+
+
+class ProfileView(UpdateView):
+    """ Отображает и редактирует профиль пользователя. """
+    model = get_user_model()
+    form_class = UserProfileForm
+    success_url = reverse_lazy('users:profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user

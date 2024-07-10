@@ -14,13 +14,15 @@
       <p class="m-2 text-white">
         {{ user.email }} |
       </p>
-      <a class="btn btn-sm btn-danger m-2"
+      <a class="btn btn-sm btn-info m-1"
+        href="{% url 'users:profile' %}">Профиль</a>
+      <a class="btn btn-sm btn-danger m-1"
         href="{% url 'users:logout' %}">Выйти</a>
       {% else %}
-      <a class="btn btn-sm btn-info m-2"
+      <a class="btn btn-sm btn-info m-1"
         href="{% url 'users:login' %}">Войти</a>
 
-      <a class="btn btn-sm btn-warning m-2"
+      <a class="btn btn-sm btn-warning m-1"
         href="{% url 'users:register' %}">Регистрация</a>
       {% endif %}
     </div>

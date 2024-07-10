@@ -4,7 +4,7 @@ from django.urls import path
 
 from users.apps import UsersConfig
 from users.utils import email_verification
-from users.views import UserCreate, notification, MyPasswordReset
+from users.views import UserCreate, notification, MyPasswordReset, ProfileView
 
 app_name = UsersConfig.name
 
@@ -19,5 +19,6 @@ urlpatterns = [
     path('password_reset/', MyPasswordReset.as_view(), name='password_reset'),
     path('password_reset/done/', PasswordResetDoneView.as_view(
         template_name='users/password_reset_done.html'),
-         name='password_reset_done')
+         name='password_reset_done'),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]
