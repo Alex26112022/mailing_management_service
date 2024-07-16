@@ -37,10 +37,12 @@
                        type="button" class=" btn btn-lg btn-outline-warning">
                         Редактировать
                     </a>
+                    {% if not perms.catalog.change_is_published %}
                     <a href="{% url 'catalog:delete_product' product.pk %}"
                        type="button" class=" btn btn-lg btn-outline-danger">
                         Удалить
                     </a>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

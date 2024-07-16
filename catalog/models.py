@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание',
                                    help_text='Введите описание', blank=True,
                                    null=True)
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
     image = models.ImageField(upload_to='products/photo/%Y/%m/%d/',
                               verbose_name='Изображение', blank=True,
                               null=True)
@@ -36,6 +37,11 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['-updated_at', 'title']
+        permissions = [
+            ('change_is_published', 'Отмена публикации'),
+            ('change_description', 'Изменение описания'),
+            ('change_category', 'Изменение категории'),
+        ]
 
 
 class Category(models.Model):
