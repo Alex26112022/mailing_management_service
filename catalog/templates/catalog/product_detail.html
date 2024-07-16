@@ -33,14 +33,18 @@
                     <button type="button"
                             class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                     {% if user.is_authenticated %}
+                    {% if perms.catalog.change_is_published or user == product.owner %}
                     <a href="{% url 'catalog:update_product' product.pk %}"
                        type="button" class=" btn btn-lg btn-outline-warning">
                         Редактировать
                     </a>
+                    {% endif %}
+                    {% if not perms.catalog.change_is_published and user == product.owner %}
                     <a href="{% url 'catalog:delete_product' product.pk %}"
                        type="button" class=" btn btn-lg btn-outline-danger">
                         Удалить
                     </a>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

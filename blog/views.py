@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render  # noqa
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (ListView, DetailView, CreateView,
@@ -36,11 +37,12 @@ class BlogDetailView(DetailView):
         return obj
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(PermissionRequiredMixin, CreateView):
     """ Создает новый пост блога. """
     model = Blog
     fields = ('title', 'content', 'photo')
     success_url = reverse_lazy('blog:index')
+    permission_required = 'blog.content-manager'
 
     def form_valid(self, form):
         new_blog = form.save(commit=False)
@@ -49,16 +51,18 @@ class BlogCreateView(CreateView):
         return super().form_valid(form)
 
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(PermissionRequiredMixin, UpdateView):
     """ Редактирует пост блога. """
     model = Blog
     fields = ('title', 'content', 'photo')
+    permission_required = 'blog.content-manager'
 
     def get_success_url(self):
         return reverse('blog:detail', args=[self.kwargs.get('slug')])
 
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(PermissionRequiredMixin, DeleteView):
     """ Удаляет пост блога.  """
     model = Blog
     success_url = reverse_lazy('blog:index')
+    permission_required = 'blog.content-manager'

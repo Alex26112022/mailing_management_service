@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, \
     DeleteView, TemplateView
 from django.core.paginator import Paginator
 from .models import Category, Product, Contacts, Version
-from .forms import ProductForm, VersionForm
+from .forms import ProductForm, VersionForm, ProductModeratorForm
 
 from catalog.write_csv import write_csv
 
@@ -79,6 +79,13 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         else:
             return self.render_to_response(
                 self.get_context_data(form=form, formset=formset))
+
+    def get_form_class(self):
+        user = self.request.user
+        if user.groups.filter(name='moderator').exists():
+            return ProductModeratorForm
+        else:
+            return ProductForm
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
