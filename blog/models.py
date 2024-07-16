@@ -27,3 +27,6 @@ class Blog(models.Model):
         verbose_name = 'Блог'
         verbose_name_plural = 'Блоги'
         ordering = ['-created_at']
+        permissions = [
+            ('content-manager', 'контент-менеджер'),
+        ]
