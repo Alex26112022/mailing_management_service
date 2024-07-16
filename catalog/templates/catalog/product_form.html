@@ -24,6 +24,7 @@
                   </div>
           </div>
       </div>
+      {% if not perms.catalog.change_is_published %}
       {% if object %}
       <div class="card m-4 box-shadow col-5 p-2">
         <div class="mb-3">
@@ -36,6 +37,7 @@
           {% endfor %}
         </div>
       </div>
+      {% endif %}
       {% endif %}
     </div>
   </form>

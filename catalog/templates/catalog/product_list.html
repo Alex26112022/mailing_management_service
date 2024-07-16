@@ -42,11 +42,13 @@
         {% endfor %}
     </div>
 
+    {% if not perms.catalog.change_is_published %}
     <div class="d-flex align-items-center
     justify-content-center">
         <a class="col-6 p-2 btn btn-outline-primary "
        href="{% url 'catalog:add_product' %}">Добавить продукт</a>
     </div>
+    {% endif %}
 
     {% include 'catalog/includes/inc_paginator.html' %}
 </div>
