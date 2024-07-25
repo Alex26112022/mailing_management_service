@@ -24,10 +24,6 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # versions = Version.objects.filter(current_version=True)
-        # context['version'] = versions.get(product=self.object)
-        # if versions.get(product=self.object).current_version:
-        #     context['version'] = versions.get(product=self.object)
         try:
             context['version'] = Version.objects.filter(
                 current_version=True).get(
