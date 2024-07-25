@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+{% load my_tags %}
+
+<div class="container">
+    <div class="row text-center">
+        {% include 'catalog/includes/inc_paginator.html' %}
+        {% for category in object_list %}
+        <div class="col-3">
+            <div class="card mb-3 box-shadow"
+                 style="min-height: 450px; max-height: 450px;">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ category.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <p>{{ category.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% include 'catalog/includes/inc_paginator.html' %}
+</div>
+{% endblock %}

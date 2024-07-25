@@ -10,12 +10,16 @@ from .models import Category, Product, Contacts, Version
 from .forms import ProductForm, VersionForm, ProductModeratorForm
 
 from catalog.write_csv import write_csv
+from .services import get_category_from_cache, get_product_from_cache
 
 
 class ProductListView(ListView):
     """ Выводит список всех продуктов. """
     model = Product
     paginate_by = 4
+
+    def get_queryset(self):
+        return get_product_from_cache()
 
 
 class ProductDetailView(DetailView):
@@ -88,6 +92,14 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     """ Удаляет продукт. """
     model = Product
     success_url = reverse_lazy('catalog:index')
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    """ Выводит список всех категорий. """
+    model = Category
+
+    def get_queryset(self):
+        return get_category_from_cache()
 
 
 class ContactlistView(ListView):
