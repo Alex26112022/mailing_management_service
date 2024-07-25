@@ -54,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -166,3 +169,7 @@ if CACHE_ENABLED:
             "TIMEOUT": os.getenv('TIMEOUT'),
         }
     }
+
+CACHE_MIDDLEWARE_ALIAS = os.getenv('CACHE_MIDDLEWARE_ALIAS', 'default')
+CACHE_MIDDLEWARE_SECONDS = int(os.getenv('CACHE_MIDDLEWARE_SECONDS'))
+CACHE_MIDDLEWARE_KEY_PREFIX = os.getenv('CACHE_MIDDLEWARE_KEY_PREFIX', '')
